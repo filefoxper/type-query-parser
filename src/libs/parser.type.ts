@@ -1,0 +1,1 @@
+export type Parser = (value?: string|string[]) => any|void;
