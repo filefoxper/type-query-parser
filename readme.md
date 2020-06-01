@@ -1,4 +1,4 @@
-[npm link](https://www.npmjs.com/package/type-qs) & [github link](https://github.com/filefoxper/type-qs)
+[npm link](https://www.npmjs.com/package/type-query-parser) & [github link](https://github.com/filefoxper/type-query-parser)
 # problem
 When we parse a search from location, we often get an object like ```{[key: string]: string|string[]|undefined}```, 
 but we really want an object like ```{[key:string]:number|boolean|Date|string|string[]...} ``` which can describe more 
