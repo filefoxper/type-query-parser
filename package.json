@@ -1,6 +1,6 @@
 {
   "name": "type-query-parser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "author": "Jimmy.Harding",
   "description": "the purpose of this project is giving types to search object values",

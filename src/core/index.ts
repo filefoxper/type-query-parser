@@ -95,7 +95,8 @@ function isStringArray(value: any): value is string[] {
 
 function parseString(value: undefined | string | string[] | ParsedQs | ParsedQs[], parse: Parser, defaults?: any) {
     if (value === undefined) {
-        return parse();
+        const result = parse();
+        return result === undefined && defaults !== undefined ? defaults : result;
     }
     if (typeof value === 'string' || isStringArray(value)) {
         const result = parse(value);
