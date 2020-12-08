@@ -1,6 +1,6 @@
 {
   "name": "type-query-parser",
-  "version": "1.0.3",
+  "version": "1.1.3",
   "main": "index.js",
   "author": "Jimmy.Harding",
   "description": "the purpose of this project is giving types to search object values",
@@ -12,6 +12,13 @@
     "type": "git",
     "url": "https://github.com/filefoxper/type-query-parser"
   },
+  "files": [
+    "dist",
+    "libs",
+    "core",
+    "index.js",
+    "index.d.ts"
+  ],
   "keywords": [
     "url",
     "search",

@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
     "declaration": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "baseUrl": ".",
     "outDir": ".",
-    "strict": false
+    "strict": true,
+    "esModuleInterop": true
   },
   "exclude": [
-    "node_modules",
-    "test"
+    "node_modules"
+  ],
+  "include": [
+    "src"
   ]
 }

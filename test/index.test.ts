@@ -7,14 +7,14 @@ describe('parse', () => {
         id: number,
         name: string,
         active: boolean,
-        role: 'GUEST' | 'USER' | 'MASTER' | 'ADMIN'
+        role: 'GUEST' | 'USER' | 'MASTER' | 'ADMIN',
     }
 
     const source = {
         id: '123456',
         name: 'jimmy ',
         active: 'true',
-        role: 'MASTER'
+        role: 'MASTER',
     };
 
     test('stringify before equals parse after', () => {
@@ -72,13 +72,13 @@ describe("Parsers", () => {
 
     test('Parsers.string', () => {
 
-        type NameQuery = { name: string };
+        type NameQuery = { name: string,id?:string};
 
         const query: NameQuery = {
             name: ' jimmy '
         };
         //with out trim
-        expect(parse<NameQuery>(query, {name: Parsers.string()}).name).toBe(query.name);
+        expect(parse<NameQuery>(query, {name: Parsers.string(),id:Parsers.string()}).id).toBe(undefined);
         //with trim
         expect(parse<NameQuery>(query, {name: Parsers.string(true)}).name).toBe(query.name.trim());
     });

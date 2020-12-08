@@ -10,20 +10,20 @@ const entryPath = pathBuilder.resolve('src', 'index.ts');
 
 const targetPath = pathBuilder.resolve('dist');
 
-function entry(mode) {
+function entry() {
     return {
-        mode: mode ? (mode === 'analyze' ? 'production' : mode) : 'production',
+        mode: 'production',
         devtool: false,
         entry: {
             libs:libsPath,
             ['libs.min']: libsPath,
-            ['type-qs']: entryPath,
-            ['type-qs.min']: entryPath
+            ['type-query-parser']: entryPath,
+            ['type-query-parser.min']: entryPath
         },
         output: {
             path: targetPath,
             filename: '[name].js',
-            library: 'typeQs',
+            library: 'type-query-parser',
             libraryTarget: 'umd'
         },
         optimization: {
@@ -85,28 +85,6 @@ function entry(mode) {
     }
 }
 
-function buildDevServerConfig() {
-    const proxyConfig = {
-        proxy: {
-            '/api/*': {
-                target: 'http://127.0.0.1:9090',
-                secure: false
-            }
-        }
-    };
-    return {
-        historyApiFallback: {
-            rewrites: {from: new RegExp('^/h5/*'), to: `/index.html`}
-        },
-        disableHostCheck: true,
-        contentBase: targetPath,
-        host: "0.0.0.0",
-        port: 8080,
-        ...proxyConfig
-    };
-}
-
 module.exports = function (env) {
-    var devServer = env.mode === 'development' ? {devServer: buildDevServerConfig()} : {};
-    return Object.assign({}, entry(env.mode), devServer);
+    return entry();
 };
