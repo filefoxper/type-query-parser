@@ -8,7 +8,10 @@ import {Parser} from "../libs/parser.type";
 export class Parsers {
 
     static string(trim?: boolean): Parser {
-        return function (value?: string|string[]): string {
+        return function (value?: string|string[]): string|undefined {
+            if(!value){
+                return value;
+            }
             if(Array.isArray(value)){
                 return value.join();
             }
@@ -127,7 +130,7 @@ function parseString(value: undefined |null| string | string[] | ParsedQs | Pars
 
 function parseArrayOrObject(value: undefined |null| string | string[] | ParsedQs | ParsedQs[], parser: Template, defaults?: any) {
     if (value === undefined ||value===null|| typeof value === 'string') {
-        throw new Error('A string or undefined object can not be processed by a parse config');
+        return value;
     }
     return parseQuery(value, parser, defaults);
 }

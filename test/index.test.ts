@@ -1,4 +1,5 @@
 import {parse, Parsers} from '../src';
+import qs from 'qs';
 import {endOfDay, getTime, startOfDay, toDatetimeString} from "../src/libs";
 
 describe('parse', () => {
@@ -202,6 +203,41 @@ describe("Parsers", () => {
             reg: Parsers.regExp(/\<.*\>/)
         };
         expect(parse<Query>(query, template).reg).toBe('<abc>');
+    });
+
+});
+
+describe('parse complex',()=>{
+
+    const data={
+        id:1,
+        name:'name',
+        complex:{
+            sex:'MALE',
+            books:['book1','book2']
+        }
+    }
+
+    const template={
+        id:Parsers.natural(),
+        name:Parsers.string(),
+        complex: {
+            sex:Parsers.enum(['MALE','FEMALE']),
+            books: Parsers.array()
+        }
+    }
+
+    test('complex',()=>{
+        const url=qs.stringify(data);
+        const result=parse(qs.parse(url),template);
+        expect(result).toEqual(data);
+    });
+
+    test('complex2',()=>{
+        const {complex,...rest}=data;
+        const url=qs.stringify(rest);
+        const result=parse(qs.parse(url),template);
+        expect(result).toEqual(rest);
     });
 
 });
